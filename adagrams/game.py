@@ -34,6 +34,17 @@ MAX_HAND_SIZE = 10
 MIN_LETTER_OCCURANCE = 1
 MAX_LETTER_OCCURANCE = 100
 
+SCORE_CHART = {
+    'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1,
+    'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
+    'D': 2, 'G': 2,
+    'B': 3, 'C': 3, 'M': 3, 'P': 3,
+    'F': 4, 'H': 4, 'V': 4, 'W': 4, 'Y': 4,
+    'K': 5,
+    'J': 8, 'X': 8,
+    'Q': 10, 'Z': 10
+}
+
 def draw_letters():
     hand = []
     while len(hand) < MAX_HAND_SIZE:
@@ -46,6 +57,7 @@ def get_new_letter():
     return new_letter
 
 def uses_available_letters(word, letter_bank):
+    word = capitalize_word(word)
     for letter in word:
         if letter not in letter_bank:
             return False
@@ -58,6 +70,10 @@ def uses_available_letters(word, letter_bank):
                 all_lettes_are_in_hand = True
     return all_lettes_are_in_hand
         
+def capitalize_word(word):
+     word = word.upper()
+     return word
+
 def check_letter_frequency(x):
     letter_count = {}
     for letter in x:
@@ -68,7 +84,19 @@ def check_letter_frequency(x):
     return letter_count
 
 def score_word(word):
-    pass
+        word = capitalize_word(word)
+        total_score = calculate_total_score(word)
+        if len(word) > 6:
+            total_score += 8
+        return total_score
+    
+def calculate_total_score(word):
+    total_score = 0
+    for letter in word:
+        letter_point = SCORE_CHART[letter]
+        total_score += letter_point
+    return total_score
+    
 
 def get_highest_word_score(word_list):
     pass
@@ -110,6 +138,9 @@ def get_highest_word_score(word_list):
 #     return letter_count
 
 
+    #    wave 3
+    # def score_word(word):
+    
 
 
 
