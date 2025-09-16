@@ -99,7 +99,26 @@ def calculate_total_score(word):
     
 
 def get_highest_word_score(word_list):
-    pass
+    scores_list = [] 
+    for word in word_list:
+        total_score = score_word(word)
+        scores_list.append(total_score)
+    # print(scores_list)
+    # print(word_list)
+    score_pointer = 0
+    for score in scores_list:
+        current_score = score
+        if current_score > score_pointer:
+            score_pointer = current_score
+        else:
+            continue
+    # print(score_pointer)
+        
+    # a_variable_that_shall_not_be_named = ()
+    winning_word_data = (word_list[scores_list.index(score_pointer)],score_pointer)
+    # print(a_variable_that_shall_not_be_named)
+    return winning_word_data
+     
 
 
 
@@ -143,8 +162,22 @@ def get_highest_word_score(word_list):
     
 
 
+        #   wave 4
+
+    # def get_highest_word_score(word_list):
+    #     scores_list = [] 
+    #     for word in word_list:
+    #         total_score = score_word(word)
+    #         scores_list.append(total_score)
+    #     winning_word_data = a tuple
+    #     tuple[0] = word_list[highest score]
+    #     tuple[1] = highest score in scores_liss
+    #     return winning_word_data
 
 
-
+    #     a_variable_that_shall_not_be_named = {}
+    #     a_variable_that_shall_not_be_named[0] = word_list[0]
+        
+        
 
 # 
