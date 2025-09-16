@@ -27,12 +27,12 @@ LETTER_POOL = {
     93: 'W', 94: 'W',
     95: 'X',
     96: 'Y', 97: 'Y',
-    98: 'Z'
+    98: 'Z',
 }
 
 MAX_HAND_SIZE = 10
 MIN_LETTER_OCCURANCE = 1
-MAX_LETTER_OCCURANCE = 98
+MAX_LETTER_OCCURANCE = 100
 
 def draw_letters():
     hand = []
@@ -43,11 +43,14 @@ def draw_letters():
 def get_new_letter():
     new_letter_value = random.randint(MIN_LETTER_OCCURANCE, MAX_LETTER_OCCURANCE)
     new_letter = LETTER_POOL[new_letter_value]
-    # print(new_letter)
     return new_letter
 
 def uses_available_letters(word, letter_bank):
-    pass
+    letter_frequency = check_letter_frequency(letter_bank)
+    for letter in word:
+        if letter not in letter_bank:
+            return False 
+    return True
 
 def score_word(word):
     pass
@@ -56,11 +59,37 @@ def get_highest_word_score(word_list):
     pass
 
 
-# -----------------------Pseudocode_______________________
 
+
+
+
+
+
+
+
+
+
+# -----------------------Pseudocode_______________________
+    #   Wave 1
 # if the player has less than 10 tiles (the maximun allowed) in their hand 
     # new_letter = get_new_letter() ***
     # draw another tile ****
     # draw another tile  and add the drawn tile to their hand 
 
 # the function to draw a new tile
+
+        # Wave 2 
+
+    # uses_available_letters
+    # for each letter in word:
+    #     if letter not in list:
+    #         return False 
+    # letter_bank = [R, I, I, T, T, Y, W, E, C, F] word = WITTY
+def check_letter_frequency(letter_bank):
+    letter_count = {}
+    for letter in letter_bank:
+        if letter not in letter_count:
+            letter_count[letter] = 1
+        else:
+            letter_count[letter] += 1
+    return letter_count
