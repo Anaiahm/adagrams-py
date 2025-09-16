@@ -46,11 +46,26 @@ def get_new_letter():
     return new_letter
 
 def uses_available_letters(word, letter_bank):
-    letter_frequency = check_letter_frequency(letter_bank)
     for letter in word:
         if letter not in letter_bank:
-            return False 
-    return True
+            return False
+        else:
+            word_letter_frequency = check_letter_frequency(word)
+            hand_letter_frequency = check_letter_frequency(letter_bank)
+            if word_letter_frequency[letter] > hand_letter_frequency[letter]:
+                return False
+            else:
+                all_lettes_are_in_hand = True
+    return all_lettes_are_in_hand
+        
+def check_letter_frequency(x):
+    letter_count = {}
+    for letter in x:
+        if letter not in letter_count:
+            letter_count[letter] = 1
+        else:
+            letter_count[letter] += 1
+    return letter_count
 
 def score_word(word):
     pass
@@ -85,11 +100,20 @@ def get_highest_word_score(word_list):
     #     if letter not in list:
     #         return False 
     # letter_bank = [R, I, I, T, T, Y, W, E, C, F] word = WITTY
-def check_letter_frequency(letter_bank):
-    letter_count = {}
-    for letter in letter_bank:
-        if letter not in letter_count:
-            letter_count[letter] = 1
-        else:
-            letter_count[letter] += 1
-    return letter_count
+# def check_letter_frequency(letter_bank):
+#     letter_count = {}
+#     for letter in letter_bank:
+#         if letter not in letter_count:
+#             letter_count[letter] = 1
+#         else:
+#             letter_count[letter] += 1
+#     return letter_count
+
+
+
+
+
+
+
+
+# 
